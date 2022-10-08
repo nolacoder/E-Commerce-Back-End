@@ -38,7 +38,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const tagData = await tag.create({
+    const tagData = await Tag.create({
         tag_name: req.body.tag_name
       });
       res.status(200).json(tagData);
@@ -73,7 +73,7 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id,
       },
     });
-    if (!tagData[0]) {
+    if (!tagData) {
       res.status(404).json({ message: 'No tag with this id!' });
       return;
     }
